@@ -7,7 +7,6 @@ on:
 
 jobs:
     automerge:
-    name: Merge branch into main automatically
     runs-on: ubuntu-latest
     steps:
       - name: checkout
