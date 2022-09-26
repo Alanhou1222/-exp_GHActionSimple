@@ -27,7 +27,7 @@ jobs:
           git checkout -b local_main
           git pull -X theirs --set-upstream origin develop
           git merge develop -X theirs --allow-unrelated-histories -m "merged origin develop into main"
-          git push origin HEAD:main
+          git push -f origin HEAD:main
 
           # timely delete this temp local branch 
           git branch --unset-upstream
