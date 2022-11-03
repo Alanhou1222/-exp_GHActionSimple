@@ -7,7 +7,7 @@ on:
 
 jobs:
   auto-merge:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -33,3 +33,5 @@ jobs:
           git branch --unset-upstream
           git checkout main
           git branch -D local_main
+
+  
