@@ -13,20 +13,12 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: 'develop'
-      - name: write
-        run: |
-          pwd
-          echo "The message is: ${{ secrets.MESSAGE }}" >> config.yml
-      - name: push
+      - name: merge
         run: |
           git config user.name github-actions[bot]
           git config user.email github-actions[bot]@github.com
           git fetch origin
-          git add .
-          git commit -m "update config.yml"
-          git push -f origin HEAD:develop
-      - name: merge
-        run: |
+          
           # configured to avoid error: "Need to specify how to reconcile divergent branches."
           git config pull.rebase true # so that git pull triggers rebase, not merge
 
@@ -41,5 +33,37 @@ jobs:
           git branch --unset-upstream
           git checkout main
           git branch -D local_main
+  write-develop-config:
+    runs-on: self-hosted
+    environment: develop
+      steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          ref: 'develop'
+      - name: write to develop config
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@github.com
+          git fetch origin
+          git add .
+          git commit -m "update config.yml"
+          git push -f origin HEAD:develop
+  write-main-config:
+    runs-on: self-hosted
+    environment: main
+      steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          ref: 'main'
+      - name: write to main config
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@github.com
+          git fetch origin
+          git add .
+          git commit -m "update config.yml"
+          git push -f origin HEAD:main
 
   
