@@ -36,7 +36,7 @@ jobs:
   write-develop-config:
     runs-on: self-hosted
     environment: develop
-      steps:
+    steps:
       - name: checkout
         uses: actions/checkout@v3
         with:
@@ -52,7 +52,7 @@ jobs:
   write-main-config:
     runs-on: self-hosted
     environment: main
-      steps:
+    steps:
       - name: checkout
         uses: actions/checkout@v3
         with:
