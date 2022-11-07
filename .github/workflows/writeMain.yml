@@ -1,4 +1,4 @@
-name: Automerge
+name: Write Main
 
 on:
   push:
@@ -45,7 +45,7 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email github-actions[bot]@github.com
           git fetch origin
-          echo "On branch: ${{BRANCH}}" > test.txt
+          echo "On branch: ${{BRANCH}}"
           git add .
           git commit -m "update config.yml"
           git push -f origin HEAD:develop
@@ -63,7 +63,6 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email github-actions[bot]@github.com
           git fetch origin
-          echo "On branch: ${{BRANCH}}" > test.txt
           git add .
           git commit -m "update config.yml"
           git push -f origin HEAD:main
