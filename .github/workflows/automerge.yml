@@ -7,7 +7,7 @@ on:
 
 jobs:
   auto-merge:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -33,7 +33,7 @@ jobs:
           git branch -D local_main
 
   write-develop-config:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     environment: develop
     steps:
       - name: checkout
@@ -51,7 +51,7 @@ jobs:
           git push -f origin HEAD:develop
 
   write-main-config:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     environment: main
     steps:
       - name: checkout
