@@ -35,6 +35,7 @@ jobs:
   write-develop-config:
     runs-on: ubuntu-latest
     environment: develop
+    needs: auto-merge
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -53,6 +54,7 @@ jobs:
   write-main-config:
     runs-on: ubuntu-latest
     environment: main
+    needs: write-develop-config
     steps:
       - name: checkout
         uses: actions/checkout@v3
