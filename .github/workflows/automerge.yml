@@ -48,8 +48,11 @@ jobs:
           git fetch origin
           echo "On branch: ${{secrets.BRANCH}}" > test.txt
           git add .
-          git commit -m "update config.yml"
-          git push -f origin HEAD:develop
+          if git status | grep -q modified
+          then
+            git commit -m "update config.yml"
+            git push -f origin HEAD:develop
+          fi
 
   write-main-config:
     runs-on: ubuntu-latest
@@ -67,6 +70,9 @@ jobs:
           git fetch origin
           echo "On branch: ${{secrets.BRANCH}}" > test.txt
           git add .
-          git commit -m "update config.yml"
-          git push -f origin HEAD:main
+          if git status | grep -q modified
+          then
+            git commit -m "update config.yml"
+            git push -f origin HEAD:main
+          fi
   
