@@ -33,7 +33,6 @@ jobs:
           git branch -D local_main
 
   write-config-to-develop-and-main:
-    needs: auto-merge
     strategy:
       matrix:
         branches: [develop, main]
