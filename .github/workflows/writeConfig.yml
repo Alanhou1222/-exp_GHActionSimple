@@ -8,6 +8,11 @@ on:
         type: string
   
 jobs:
+  do-nothing:
+  runs-on: ubuntu-latest
+  steps:
+    run: |
+      echo "hi"
   write-config:
     runs-on: ubuntu-latest
     environment: ${{ inputs.branch }}
