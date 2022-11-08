@@ -38,7 +38,7 @@ jobs:
     strategy:
       matrix:
         branches: [develop, main]
-    uses: writeConfig.yml
+    uses: Alanhou1222/exp_GHActionSimple/.github/workflows/writeConfig.yml@develop
     with:
       branch: ${{ matrix.branches }}
   
