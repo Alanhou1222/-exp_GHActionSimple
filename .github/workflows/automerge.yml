@@ -42,26 +42,4 @@ jobs:
       uses: writeConfig.yml
       with:
         branch: ${{ matrix.branches }}
-
-  write-main-config:
-    runs-on: ubuntu-latest
-    environment: main
-    needs: write-develop-config
-    steps: 
-      - name: checkout
-        uses: actions/checkout@v3
-        with:
-          ref: 'main'
-      - name: write to main config
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email github-actions[bot]@github.com
-          git fetch origin
-          echo "On branch: ${{secrets.BRANCH}}" > test.txt
-          git add .
-          if git status | grep -q modified
-          then
-            git commit -m "update config.yml"
-            git push -f origin HEAD:main
-          fi
   
