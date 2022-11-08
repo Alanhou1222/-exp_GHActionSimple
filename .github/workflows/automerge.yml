@@ -38,7 +38,7 @@ jobs:
     strategy:
       matrix:
         branches: [develop, main]
-    uses: .github/workflows/writeConfig.yml
+    uses: ./.github/workflows/writeConfig.yml
     with:
       branch: ${{ matrix.branches }}
   
