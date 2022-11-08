@@ -9,10 +9,10 @@ on:
   
 jobs:
   do-nothing:
-  runs-on: ubuntu-latest
-  steps:
-    run: |
-      echo "hi"
+    runs-on: ubuntu-latest
+    steps:
+      run: |
+        git
   write-config:
     runs-on: ubuntu-latest
     environment: ${{ inputs.branch }}
