@@ -32,11 +32,15 @@ jobs:
           git checkout main
           git branch -D local_main
 
-  write-config-to-develop-and-main:
-    strategy:
-      matrix:
-        branches: [develop, main]
+  # write-config-to-develop-and-main:
+  #   strategy:
+  #     matrix:
+  #       branches: [develop, main]
+  #   uses: ./.github/workflows/writeConfig.yml
+  #   with:
+  #     branch: ${{ matrix.branches }}
+  
+  write-config-to-develop:
     uses: ./.github/workflows/writeConfig.yml
     with:
-      branch: ${{ matrix.branches }}
-  
+      branch: develop
