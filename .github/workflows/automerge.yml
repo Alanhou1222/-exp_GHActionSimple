@@ -32,33 +32,22 @@ jobs:
           git checkout main
           git branch -D local_main
 
-  write-develop-config:
+  write-config-to-develop-and-main:
     runs-on: ubuntu-latest
-    environment: develop
     needs: auto-merge
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-        with:
-          ref: 'develop'
-      - name: write to develop config
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email github-actions[bot]@github.com
-          git fetch origin
-          echo "On branch: ${{secrets.BRANCH}}" > test.txt
-          git add .
-          if git status | grep -q modified
-          then
-            git commit -m "update config.yml"
-            git push -f origin HEAD:develop
-          fi
+      strategy:
+        matrix:
+          branches: [develop, main]
+      uses: writeConfig.yml
+      with:
+        branch: ${{ matrix.branches }}
 
   write-main-config:
     runs-on: ubuntu-latest
     environment: main
     needs: write-develop-config
-    steps:
+    steps: 
       - name: checkout
         uses: actions/checkout@v3
         with:

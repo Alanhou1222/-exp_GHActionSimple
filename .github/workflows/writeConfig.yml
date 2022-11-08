@@ -1,0 +1,31 @@
+name: Write Config
+on:
+  workflow_call:
+    inputs:
+      branch:
+        description: 'deploying branch of the workflow'
+        required: true
+        type: string
+  
+  
+  write-config:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.branch }}
+    needs: write-develop-config
+    steps: 
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          ref: '${{ inputs.branch }}'
+      - name: write to config
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@github.com
+          git fetch origin
+          echo "On branch: ${{secrets.BRANCH}}" > test.txt
+          git add .
+          if git status | grep -q modified
+          then
+            git commit -m "update config.yml"
+            git push -f origin HEAD:${{ inputs.branch }}
+          fi
