@@ -32,7 +32,7 @@ jobs:
           git checkout main
           git branch -D local_main
 
-  write-config-to-develop-and-main:
+  write-config:
     needs: auto-merge
     strategy:
       matrix:

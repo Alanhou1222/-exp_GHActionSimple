@@ -8,12 +8,6 @@ on:
         type: string
   
 jobs:
-  # do-nothing:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: run git
-  #       run: |
-  #         git
   write-config:
     runs-on: ubuntu-latest
     environment: ${{ inputs.branch }}
